@@ -1,0 +1,13 @@
+# Build output (regenerate with: node scripts/build.js)
+dist/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Node (none currently, but future-proof)
+node_modules/
+npm-debug.log*

@@ -1,0 +1,57 @@
+{
+  "manifest_version": 3,
+  "name": "Explain This",
+  "version": "1.0.0",
+  "description": "Select any confusing word or phrase to get a plain-language explanation. Offline glossary first, then dictionary & Wikipedia. No accounts, no API keys.",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "permissions": ["contextMenus", "storage"],
+  "host_permissions": [
+    "https://*.wikipedia.org/*",
+    "https://api.dictionaryapi.dev/*"
+  ],
+  "background": {
+    "service_worker": "src/background.js",
+    "scripts": ["src/background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Explain This",
+    "default_popup": "src/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "options_ui": {
+    "page": "src/options.html",
+    "open_in_tab": true
+  },
+  "commands": {
+    "explain-selection": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+E",
+        "mac": "Command+Shift+E"
+      },
+      "description": "Explain the selected text"
+    }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "explain-this@sidina.eu",
+      "strict_min_version": "121.0"
+    }
+  }
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Explain This — Settings</title>
+  <style>
+    :root {
+      --bg: #f6f7fb; --card: #ffffff; --fg: #1f2330; --muted: #6b7280;
+      --brand: #6366F1; --brand2: #8B5CF6; --line: rgba(0,0,0,.08); --field: #f3f4f6;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #14161d; --card: #1b1e27; --fg: #e6e8ee; --muted: #9aa0ad; --line: rgba(255,255,255,.08); --field: #262a35; }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--fg);
+      font: 400 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    .wrap { max-width: 680px; margin: 0 auto; padding: 32px 20px 64px; }
+    .head { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+    .logo { width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, var(--brand), var(--brand2));
+      display: grid; place-items: center; color: #fff; flex: none; }
+    .head h1 { margin: 0; font-size: 22px; } .head p { margin: 2px 0 0; color: var(--muted); font-size: 13px; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; margin-bottom: 20px; }
+    .card h2 { margin: 0 0 4px; font-size: 15px; } .card .cardsub { margin: 0 0 16px; color: var(--muted); font-size: 13px; }
+    .row { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 12px 0; border-top: 1px solid var(--line); }
+    .row:first-of-type { border-top: none; }
+    .row .label { font-weight: 600; } .row .hint { color: var(--muted); font-size: 13px; margin-top: 2px; }
+    /* toggle */
+    .switch { position: relative; width: 44px; height: 26px; flex: none; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider { position: absolute; inset: 0; background: #cbd0da; border-radius: 999px; transition: .2s; cursor: pointer; }
+    .slider::before { content: ""; position: absolute; width: 20px; height: 20px; left: 3px; top: 3px; background: #fff; border-radius: 50%; transition: .2s; }
+    input:checked + .slider { background: linear-gradient(135deg, var(--brand), var(--brand2)); }
+    input:checked + .slider::before { transform: translateX(18px); }
+    select { padding: 8px 10px; border-radius: 9px; border: 1px solid var(--line); background: var(--field); color: var(--fg); font: inherit; }
+    /* glossary editor */
+    .g-add { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+    .g-add input { padding: 9px 11px; border-radius: 9px; border: 1px solid var(--line); background: var(--field); color: var(--fg); font: inherit; }
+    .g-add input.term { width: 150px; } .g-add input.def { flex: 1; min-width: 180px; }
+    .btn { all: unset; cursor: pointer; padding: 9px 16px; border-radius: 9px; color: #fff; font-weight: 700;
+      background: linear-gradient(135deg, var(--brand), var(--brand2)); }
+    .btn:active { transform: scale(.97); }
+    .btn.ghost { background: transparent; color: var(--brand); border: 1px solid var(--line); }
+    ul.glist { list-style: none; margin: 0; padding: 0; }
+    ul.glist li { display: flex; gap: 10px; align-items: baseline; padding: 10px 0; border-top: 1px solid var(--line); }
+    ul.glist li .gt { font-weight: 700; min-width: 110px; word-break: break-word; }
+    ul.glist li .gd { flex: 1; color: var(--fg); } ul.glist li .gx { all: unset; cursor: pointer; color: var(--muted); font-size: 18px; padding: 0 4px; }
+    ul.glist li .gx:hover { color: #ef4444; }
+    .empty { color: var(--muted); font-size: 13px; padding: 10px 0; }
+    .privacy { font-size: 13px; color: var(--muted); }
+    .privacy strong { color: var(--fg); }
+    .saved { color: #059669; font-size: 13px; opacity: 0; transition: opacity .2s; } .saved.show { opacity: 1; }
+    @media (prefers-color-scheme: dark){ .saved { color: #34d399; } }
+    kbd { background: var(--field); border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 6px; padding: 1px 6px; font-size: 12px; font-family: ui-monospace, Menlo, Consolas, monospace; }
+    .foot { text-align: center; color: var(--muted); font-size: 12px; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="head">
+      <span class="logo">
+        <svg viewBox="0 0 24 24" width="26" height="26"><path fill="currentColor" d="M9 21h6v-1H9v1zm3-19a7 7 0 0 0-4 12.74c.6.43 1 .97 1 1.76h6c0-.79.4-1.33 1-1.76A7 7 0 0 0 12 2zm0 2a5 5 0 0 1 2.9 9.06c-.6.43-1.08 1-1.36 1.69h-3.08c-.28-.69-.76-1.26-1.36-1.69A5 5 0 0 1 12 4z"/></svg>
+      </span>
+      <div>
+        <h1>Explain This</h1>
+        <p>Select text on any page, then click the bubble — or press <kbd>Ctrl/⌘ Shift E</kbd>.</p>
+      </div>
+    </div>
+
+    <section class="card">
+      <h2>Behaviour</h2>
+      <p class="cardsub">Control how explanations appear and which sources are used.</p>
+
+      <div class="row">
+        <div><div class="label">Show the “Explain” bubble on selection</div>
+          <div class="hint">When off, use the right-click menu, the keyboard shortcut, or the toolbar popup instead.</div></div>
+        <label class="switch"><input type="checkbox" id="autoBubble"><span class="slider"></span></label>
+      </div>
+      <div class="row">
+        <div><div class="label">Use the dictionary for single words</div>
+          <div class="hint">Free dictionary API (dictionaryapi.dev) — definitions &amp; pronunciation.</div></div>
+        <label class="switch"><input type="checkbox" id="useDictionary"><span class="slider"></span></label>
+      </div>
+      <div class="row">
+        <div><div class="label">Use Wikipedia for phrases &amp; topics</div>
+          <div class="hint">Plain-language summaries for concepts, people, places and jargon.</div></div>
+        <label class="switch"><input type="checkbox" id="useWikipedia"><span class="slider"></span></label>
+      </div>
+      <div class="row">
+        <div><div class="label">Wikipedia language</div>
+          <div class="hint">Which Wikipedia edition to summarise from.</div></div>
+        <select id="lang">
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+          <option value="es">Español</option>
+          <option value="de">Deutsch</option>
+          <option value="it">Italiano</option>
+          <option value="pt">Português</option>
+          <option value="nl">Nederlands</option>
+          <option value="ru">Русский</option>
+          <option value="ja">日本語</option>
+          <option value="zh">中文</option>
+          <option value="ar">العربية</option>
+        </select>
+      </div>
+      <div class="row" style="justify-content:flex-end"><span class="saved" id="saved">Saved ✓</span></div>
+    </section>
+
+    <section class="card">
+      <h2>Your glossary</h2>
+      <p class="cardsub">Add your own terms — team acronyms, project names, anything. These are checked first and work completely offline. They override the built-in glossary.</p>
+      <div class="g-add">
+        <input class="term" id="gTerm" type="text" placeholder="Term (e.g. OKR)" autocomplete="off">
+        <input class="def" id="gDef" type="text" placeholder="Plain-language explanation" autocomplete="off">
+        <button class="btn" id="gAdd">Add</button>
+      </div>
+      <ul class="glist" id="glist"></ul>
+      <p class="empty" id="gEmpty">No custom terms yet.</p>
+    </section>
+
+    <section class="card">
+      <h2>Privacy</h2>
+      <p class="privacy">
+        Everything in your glossary and your settings stays <strong>on this device</strong>.
+        The extension sends text to an outside service <strong>only when you explicitly ask</strong>
+        for an explanation and the offline glossary doesn't already have it — and then it sends
+        <strong>only that single word or phrase</strong> to the dictionary or Wikipedia, nothing else.
+        There are no accounts, no tracking, no analytics, and no API keys.
+        Turn off both online sources above to run fully offline.
+      </p>
+    </section>
+
+    <div class="foot">Explain This · v1.0.0 · open source</div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
